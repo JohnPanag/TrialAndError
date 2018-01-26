@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+</head>
+<body>
+
+  <h1 style="text-transform:uppercase">different types of greetings</h1>
+  <button type="button" onclick="myFunction()" >click me</button>
+  <p id="me"></p>
+
+    <script>
+      function one(){document.getElementById("me").innerHTML = "Hello there";}
+      function myFunction (){
+           var httpr = new XMLHttpRequest();
+           httpr.onreadystatechange = function(){
+               if (httpr.readyState == 4 && httpr.status == 200)
+               {
+                 var obj = JSON.parse(this.responseText);
+                 var txt="<ul>";
+                 for(x in obj){
+                   txt += "<li>"+ obj["x"] +"</li>"
+                 }
+                 txt += "</ul>";
+                 console.log("hi");
+                 document.getElementById("me").innerHTML = txt;
+               }
+           }
+           httpr.open("GET","https://github.com/JohnPanag/TrialAndError/blob/master/hello.txt",true);
+           httpr.send();
+       }
+    </script>
+
+
+</body>
+</html>
